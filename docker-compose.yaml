@@ -11,3 +11,16 @@ services:
       POSTGRES_PASSWORD: admin
     ports:
       - 5432:5432
+
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - SPRING_DATASOURCE_USERNAME=compose-postgres
+      - SPRING_DATASOURCE_PASSWORD=compose-admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update

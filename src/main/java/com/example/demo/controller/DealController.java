@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.exception.ApiRequestException;
 import com.example.demo.model.Deal;
 import com.example.demo.repo.DealRepo;
 import jakarta.validation.Valid;
@@ -22,17 +23,21 @@ public class DealController {
   ResponseEntity<Deal> createDeal(@Valid @RequestBody Deal deal) {
     Deal savedDeal;
     try {
-      deal.setTimestamp(
-        new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
-      );
-      // to remove ID from the request
-      deal.setId(0);
-      savedDeal = dealRepo.save(deal);
+      // TODO: System should not import same request twice. (we could add request ID)
+      savedDeal = dealRepo.save(cleanRequistData(deal));
       logger.info("Deal saved successfully");
     } catch (Exception e) {
       logger.error("Error while saving deal", e);
-      return ResponseEntity.badRequest().body(deal);
+      throw new ApiRequestException("Error while saving deal");
     }
     return ResponseEntity.ok(savedDeal);
+  }
+
+  private Deal cleanRequistData(Deal deal) {
+    deal.setId(0);
+    deal.setTimestamp(
+      new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
+    );
+    return deal;
   }
 }

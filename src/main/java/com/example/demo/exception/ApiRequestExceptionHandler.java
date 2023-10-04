@@ -17,7 +17,6 @@ public class ApiRequestExceptionHandler {
     HttpStatus badRequest = HttpStatus.BAD_REQUEST;
     ApIException apIException = new ApIException(
       e.getMessage(),
-      e,
       badRequest,
       ZonedDateTime.now(ZoneId.of("Z"))
     );

@@ -7,21 +7,21 @@
 - [x] Validate row structure.(e.g: Missing fields, Type format..etc. We do not expect you to cover all possible cases but we'll look to how you'll implement validations)
 
 
-- [x] @  No rollback allowed, what every rows imported should be saved in DB.
+- [x] No rollback allowed, what every rows imported should be saved in DB.
 
 
-- [x] ! System should not import same request twice.
+- [x] System should not import same request twice.
 
 #### Deliverables should be ready to work including:
 
-- [x] ? Use Actual Db, you can select between (Postgres, MySql or MongoDB)
+- [x] Use Actual Db, you can select between (Postgres, MySql or MongoDB)
 
-- [x] ? Maven or Gradle project is required for full source code.
+- [x] Maven or Gradle project is required for full source code.
 
-- [x] ? Proper Logging.
+- [x] Proper Logging.
 
 
-- [x] @ Proper error/exception handling.
+- [x] Proper error/exception handling.
 
 - [x] @ Workable deployment including sample file (Docker Compose).
 
